@@ -26,26 +26,61 @@
 
 </head>
 <body>
-<h3>月曆製作</h3>
+<h3 class="text-center">月曆製作</h3>
 <?php
 
-$thisMonth=date('m');
+if(isset($_GET['month'])){
+    $thisMonth=$_GET['month'];
+}else{
+    $thisMonth=date('m');
+}
+if(isset($_GET['year'])){
+    $thisYear=$_GET['year'];
+}else{
+    $thisYear=date('Y');
+}
+
+if($thisMonth>=12){
+    $nextMonth=1;
+    $nextYear=$thisYear+1;
+}else{
+    $nextMonth=$thisMonth+1;
+    $nextYear=$thisYear;
+
+}
+if($thisMonth<=1){
+    $prevMonth=12;
+    $prevYear=$thisYear-1;
+}else{
+    $prevMonth=$thisMonth-1;
+    $prevYear=$thisYear;
+}
+
+/* if($thisYear>=12 && $thisYear<=1){
+    $prevYear=$thisYear;
+    $nextYear=$thisYear;
+} */
+//echo "這一年=>".$thisYear;
 //echo "這個月=>".$thisMonth;
+//echo "next".$nextYear;
+//echo "prev".$prevYear;
 //echo "<br>";
-$monthDays=date('t');
+
+$firstDate=strtotime($thisYear."-".$thisMonth."-".'1');
+$monthDays=date('t',$firstDate);
 //echo "這個月天數=>".$monthDays;
 //echo "<br>";
-$firstDate=strtotime(date('Y-m-').'1');
 //echo $firstDate;
 $startDayWeek=date('w',$firstDate);
 ///echo "第一天星期=>".$startDayWeek;
 ///echo "<br>";
-
+$year;
 
 ?>
 <div class='justify-content-between d-flex m-auto' style="width:750px">
-<a href="calendar.php?year=xxx&month=<?=$thisMonth-1;?>">上一個月</a>
-<a href="calendar.php?year=xxxx&month=<?=$thisMonth+1;?>">下一個月</a>
+<a href="calendar.php?year=<?=$prevYear;?>&month=<?=$prevMonth;?>">上一個月</a>
+<span><?=$thisYear;?>年<?=$thisMonth;?>月</span>
+<a href="calendar.php?year=<?=$nextYear;?>&month=<?=$nextMonth;?>">下一個月</a>
 </div>
 <table>
 <tr>
