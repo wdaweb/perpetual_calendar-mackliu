@@ -95,19 +95,31 @@ $year;
 
 <?php
 
+$holiday=[
+    '11-12'=>'我也不知道什麼日子',
+    '11-30'=>'最後一天'
+];
+
+
 for($i=0; $i<6;$i++){
     echo "<tr>";
     for($j=0;$j<7;$j++){
 
         echo "<td>";
+        $date='';
         if($i==0 && $j<$startDayWeek){
             echo "&nbsp;";
         }else if((($i*7) + ($j+1) - $startDayWeek)>$monthDays){
-
+            echo "&nbsp;";
         }else{
-            echo (($i*7) + ($j+1) - $startDayWeek);
+            $date=(($i*7) + ($j+1) - $startDayWeek);
+            
         }
-        
+        echo $date;
+        if(!empty($holiday[$thisMonth.'-'.$date])){
+            echo $holiday[$thisMonth.'-'.$date];
+        };
+
         echo "</td>";
     }
     echo "</tr>";
