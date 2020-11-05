@@ -20,6 +20,8 @@
         table td:hover{
             background:yellow;
         }
+
+    
     </style>
 
 </head>
@@ -28,21 +30,23 @@
 <?php
 
 $thisMonth=date('m');
-echo "這個月=>".$thisMonth;
-echo "<br>";
+//echo "這個月=>".$thisMonth;
+//echo "<br>";
 $monthDays=date('t');
-echo "這個月天數=>".$monthDays;
-echo "<br>";
+//echo "這個月天數=>".$monthDays;
+//echo "<br>";
 $firstDate=strtotime(date('Y-m-').'1');
 //echo $firstDate;
 $startDayWeek=date('w',$firstDate);
-echo "第一天星期=>".$startDayWeek;
-echo "<br>";
+///echo "第一天星期=>".$startDayWeek;
+///echo "<br>";
 
 
 ?>
+<div class='justify-content-between d-flex m-auto' style="width:750px">
 <a href="calendar.php?year=xxx&month=<?=$thisMonth-1;?>">上一個月</a>
 <a href="calendar.php?year=xxxx&month=<?=$thisMonth+1;?>">下一個月</a>
+</div>
 <table>
 <tr>
     <td>日</td>
